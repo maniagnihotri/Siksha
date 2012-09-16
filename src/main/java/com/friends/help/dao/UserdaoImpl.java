@@ -1,5 +1,7 @@
 package com.friends.help.dao;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 //import org.hibernate.SessionFactory;
@@ -39,7 +41,11 @@ public class UserdaoImpl extends CustomHibernateDaoSupport implements Userdao{
 	@Override
 	public User getUser(String username) {
 		// TODO Auto-generated method stub
-		return (User)getHibernateTemplate().find("from User where username=?",username);
+		
+		 List user = new ArrayList();
+		 user = getHibernateTemplate().find("from User where username=?",username);
+		
+		 return (User)user.get(0);
 	}
 	
 }

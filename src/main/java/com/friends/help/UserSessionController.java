@@ -23,14 +23,18 @@ public class UserSessionController {
 	public Userdao userdao;
 	@RequestMapping(value="/tryLogin.html", method= RequestMethod.POST)
 	public ModelAndView login(@ModelAttribute("user") User user, BindingResult result, ModelMap model ,Locale locale){
+		
 		System.out.println("UserEntered: "+user+" : "+user.getFirstname());
+		
 		User fromdb = userdao.getUser(user.getFirstname());
+				
 		if( fromdb.getPassword().equals(user.getPassword())){
 			model.put("user", user.getFirstname());
 			
 			return new ModelAndView("test", "command", new User());
 		}
 		else return new ModelAndView(new RedirectView("login.html"));
+		
 	}
 	
 	@RequestMapping("/login")
