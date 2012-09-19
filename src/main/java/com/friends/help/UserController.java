@@ -32,11 +32,12 @@ public class UserController {
 			//if("admin".equals(user.getUserId())&& "admin".equals(user.getPassword())){
 				//model.put("user", user.getUserId());
 				userdao.saveUser(user);
-				return new ModelAndView("home_redirect",model);
+				return new ModelAndView("home",model);
 			//}
 			//else return new ModelAndView(new RedirectView("login.html"));
 		}
-		public void setUserDAO(Userdao userDAO) {
+		/*public void setUserDAO(Userdao userDAO) {
 			this.userdao = userDAO;
 			}
-}
+*/
+		}

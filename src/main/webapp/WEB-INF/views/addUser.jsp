@@ -8,6 +8,7 @@
 <title>Add-User Page</title>
 </head>
 <body>
+<%@include file="top.jsp" %>
 <form:form method="post" action="userAdder.html">
  
     <table>
@@ -43,5 +44,6 @@
 </table>  
      
 </form:form>
+<%@include file="bottom.jsp" %>
 </body>
 </html>

@@ -31,7 +31,7 @@ public class HomeController {
 		
 		model.put("serverTime", formattedDate );
 		
-		return "welcome";
+		return "home";
 	}
 	
 	

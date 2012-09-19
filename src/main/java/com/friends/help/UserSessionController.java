@@ -33,15 +33,23 @@ public class UserSessionController {
 			model.put("user", user.getFirstname());
 			
 			//return new ModelAndView("addDistrict", "command", new District());
-			return new ModelAndView("home_redirect",model);
+			return new ModelAndView("home",model);
 		}
 		else return new ModelAndView(new RedirectView("login.html"));
 		
 	}
 	
-	@RequestMapping("/login")
+	@RequestMapping("/login.html")
     public ModelAndView login() {
          
         return new ModelAndView("login", "command", new User());
     }
+	
+	@RequestMapping("/distView.html")
+    public ModelAndView distView(ModelMap model) {
+		
+       // model.put("name", "mani") ;
+        return new ModelAndView("addDistrict", "command", new District());
+    }
+	
 }
