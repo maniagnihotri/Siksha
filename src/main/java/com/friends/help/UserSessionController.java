@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.friends.help.dao.Userdao;
+import com.friends.help.forms.District;
 import com.friends.help.forms.User;
 
 
@@ -31,7 +32,8 @@ public class UserSessionController {
 		if( fromdb.getPassword().equals(user.getPassword())){
 			model.put("user", user.getFirstname());
 			
-			return new ModelAndView("test", "command", new User());
+			//return new ModelAndView("addDistrict", "command", new District());
+			return new ModelAndView("home_redirect",model);
 		}
 		else return new ModelAndView(new RedirectView("login.html"));
 		

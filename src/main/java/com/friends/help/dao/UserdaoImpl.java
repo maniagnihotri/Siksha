@@ -43,8 +43,11 @@ public class UserdaoImpl extends CustomHibernateDaoSupport implements Userdao{
 		// TODO Auto-generated method stub
 		
 		 List user = new ArrayList();
+		 //User u = new  User();
+		 //u.setFirstname(username);
 		 user = getHibernateTemplate().find("from User where username=?",username);
-		
+		//getHibernateTemplate().findByNamedQuery("from user where username=?",u.getFirstname());
+		//System.out.println(u.getEmail());
 		 return (User)user.get(0);
 	}
 	

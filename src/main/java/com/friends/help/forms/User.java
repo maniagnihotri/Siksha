@@ -1,5 +1,8 @@
 package com.friends.help.forms;
 
+import java.util.ArrayList;
+import java.util.BitSet;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -37,6 +40,7 @@ public class User {
 	 */
     
 	public String getFirstname() {
+		
 		return firstname;
 	}
 	/**
