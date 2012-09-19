@@ -17,6 +17,7 @@
   <definition name="welcome" extends="baseLayout">
       <put-attribute name="title"  value="Welcome"/>
       <put-attribute name="body"   value="/WEB-INF/views/home.jsp"/>      
+  	  <put-attribute name="menu"   value="/WEB-INF/tiles/Adminmenu.jsp"/>
   </definition>
    <definition name="test" extends="baseLayout">
       <put-attribute name="title"  value="Welcome"/>
@@ -30,7 +31,11 @@
       <put-attribute name="title"  value="addUser"/>
       <put-attribute name="body"   value="/WEB-INF/views/addUser.jsp"/>      
   </definition>
-  
+  <definition name="addDisrict.jsp" extends="baseLayout">
+      <put-attribute name="title"  value="addDisrict"/>
+      <put-attribute name="body"   value="/WEB-INF/views/addDisrict.jsp"/>   
+      <put-attribute name="menu"   value="/WEB-INF/tiles/Adminmenu.jsp"/>   
+  </definition>
  
  
   

@@ -39,6 +39,7 @@
 		<beans:property name="annotatedClasses">
 			<beans:list>
 				<beans:value>com.friends.help.forms.User</beans:value>
+				<beans:value>com.friends.help.forms.District</beans:value>
 			</beans:list>
 				</beans:property>
 		<beans:property name="hibernateProperties">
@@ -54,4 +55,7 @@
 		<beans:property name="sessionFactory" ref="mySessionFactory"/>
 	</beans:bean>
 	
+	<beans:bean id="myDisrictDAO" class="com.friends.help.dao.DistrictdaoImpl">
+		<beans:property name="sessionFactory" ref="mySessionFactory"/>
+	</beans:bean>
 </beans:beans>
