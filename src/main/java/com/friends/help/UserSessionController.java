@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.friends.help.dao.Userdao;
+import com.friends.help.forms.Block;
 import com.friends.help.forms.District;
 import com.friends.help.forms.User;
 
@@ -45,11 +46,8 @@ public class UserSessionController {
         return new ModelAndView("login", "command", new User());
     }
 	
-	@RequestMapping("/distView.html")
-    public ModelAndView distView(ModelMap model) {
-		
-       // model.put("name", "mani") ;
-        return new ModelAndView("addDistrict", "command", new District());
-    }
 	
+    
+	
+		
 }

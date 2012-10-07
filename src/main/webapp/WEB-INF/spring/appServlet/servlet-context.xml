@@ -17,6 +17,19 @@
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
 
+	<beans:bean class="com.friends.jsp.validate.Blockvalidator" />
+	<beans:bean class="com.friends.jsp.validate.Districtvalidator" />
+	<beans:bean class="com.friends.jsp.validate.Clustersvalidator" />
+	<beans:bean class="com.friends.jsp.validate.VillageTypeNamesvalidator" />
+	<beans:bean class="com.friends.jsp.validate.Villagevalidator" />
+	<beans:bean class="com.friends.jsp.validate.Schoolvalidator" />
+	
+	
+	<beans:bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<beans:property name="basename" value="MessageResources" />
+	</beans:bean>	
+
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory >
 	
 	<beans:bean id="viewResolver" class="org.springframework.web.servlet.view.ResourceBundleViewResolver" p:basename="views" /-->
@@ -40,6 +53,13 @@
 			<beans:list>
 				<beans:value>com.friends.help.forms.User</beans:value>
 				<beans:value>com.friends.help.forms.District</beans:value>
+				<beans:value>com.friends.help.forms.Block</beans:value>
+				<beans:value>com.friends.help.forms.Clusters</beans:value>
+				<beans:value>com.friends.help.forms.VillageType</beans:value>
+				<beans:value>com.friends.help.forms.VillageTypeNames</beans:value>
+				<beans:value>com.friends.help.forms.Village</beans:value>
+				<beans:value>com.friends.help.forms.SchoolCategory</beans:value>
+				<beans:value>com.friends.help.forms.School</beans:value>
 			</beans:list>
 				</beans:property>
 		<beans:property name="hibernateProperties">
@@ -56,6 +76,26 @@
 	</beans:bean>
 	
 	<beans:bean id="myDisrictDAO" class="com.friends.help.dao.DistrictdaoImpl">
+		<beans:property name="sessionFactory" ref="mySessionFactory"/>
+	</beans:bean>
+	
+	<beans:bean id="myBlockDAO" class="com.friends.help.dao.BlockdaoImpl">
+		<beans:property name="sessionFactory" ref="mySessionFactory"/>
+	</beans:bean>
+	
+	<beans:bean id="myClustersDAO" class="com.friends.help.dao.ClustersdaoImpl">
+		<beans:property name="sessionFactory" ref="mySessionFactory"/>
+	</beans:bean>
+	
+	<beans:bean id="myVillageTypeNamesDAO" class="com.friends.help.dao.VillageTypeNamesdaoImpl">
+		<beans:property name="sessionFactory" ref="mySessionFactory"/>
+	</beans:bean>
+	
+	<beans:bean id="myVillageDAO" class="com.friends.help.dao.VillagedaoImpl">
+		<beans:property name="sessionFactory" ref="mySessionFactory"/>
+	</beans:bean>
+	
+	<beans:bean id="mySchoolDAO" class="com.friends.help.dao.SchooldaoImpl">
 		<beans:property name="sessionFactory" ref="mySessionFactory"/>
 	</beans:bean>
 </beans:beans>

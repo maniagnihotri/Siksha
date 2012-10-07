@@ -1,10 +1,10 @@
 
 
-				<jsp:include page="../tiles/menu.jsp" />
+<%@include file="../tiles/menu.jsp"%>
+</div>
 
 
-			</div>
 
-			<jsp:include page="../tiles/footer.jsp" />
-		</div>
-	</div>
+<%@include file="../tiles/footer.jsp"%>
+</div>
+</div>
