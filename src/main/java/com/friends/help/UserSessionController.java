@@ -34,7 +34,8 @@ public class UserSessionController {
 			model.put("user", user.getFirstname());
 			
 			//return new ModelAndView("addDistrict", "command", new District());
-			return new ModelAndView("home",model);
+			//return new ModelAndView("home",model);
+			return new ModelAndView(new RedirectView("SelectPlace.html"));
 		}
 		else return new ModelAndView(new RedirectView("login.html"));
 		
