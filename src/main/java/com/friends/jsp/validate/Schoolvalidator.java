@@ -5,7 +5,6 @@ import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import com.friends.help.forms.School;
-import com.friends.help.forms.Village;
 
 public class Schoolvalidator implements Validator {
 

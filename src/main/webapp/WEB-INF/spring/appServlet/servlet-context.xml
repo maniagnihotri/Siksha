@@ -61,6 +61,9 @@
 				<beans:value>com.friends.help.forms.Village</beans:value>
 				<beans:value>com.friends.help.forms.SchoolCategory</beans:value>
 				<beans:value>com.friends.help.forms.School</beans:value>
+				<beans:value>com.friends.help.forms.CasteType</beans:value>
+				<beans:value>com.friends.help.forms.Disability</beans:value>
+				<beans:value>com.friends.help.forms.ChildDetails</beans:value>
 			</beans:list>
 				</beans:property>
 		<beans:property name="hibernateProperties">
