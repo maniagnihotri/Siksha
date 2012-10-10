@@ -25,41 +25,57 @@ function Add()
 {
 	//alert("inside add method");
 	
-    document.Formselectplace.action = "SelectPlace.html";
+    document.Formchilddetails.action = "Childdetailsadder.html";
     //alert(document.Form1.action);
-    document.Formselectplace.submit();             
+    document.Formchilddetails.submit();             
     return true;
 }
 
 function dropDownDistrictchange() {
 	//alert("In dropDownchange() method");
     // window.location = "Blocknames.html";
-    document.Formselectplace.action = "BlocknamesinSelectPlace.html";
-    document.Formselectplace.submit();             // Submit the page
+    document.Formchilddetails.action = "BlocknamesinSelectPlace.html";
+    document.Formchilddetails.submit();             // Submit the page
 	return true;
 }
 
 function dropDownBlockchange() {
 	//alert("In dropDownchange() method");
     // window.location = "Blocknames.html";
-    document.Formselectplace.action = "ClustersnamesinSelectPlace.html";
-    document.Formselectplace.submit();             // Submit the page
+    document.Formchilddetails.action = "ClustersnamesinSelectPlace.html";
+    document.Formchilddetails.submit();             // Submit the page
 	return true;
 }
 
 function dropDownVillagetypenameschange() {
 	//alert("In dropDownchange() method");
     // window.location = "Blocknames.html";
-    document.Formselectplace.action = "VillageinSelectplace.html";
-    document.Formselectplace.submit();             // Submit the page
+    document.Formchilddetails.action = "VillageinSelectplace.html";
+    document.Formchilddetails.submit();             // Submit the page
 	return true;
 }
 
 function dropDownTypechange() {
 	//alert("In dropDownchange() method");
     // window.location = "Blocknames.html";
-    document.Formselectplace.action = "VillagetypenamesinSelectPlace.html";
-    document.Formselectplace.submit();             // Submit the page
+    document.Formchilddetails.action = "VillagetypenamesinSelectPlace.html";
+    document.Formchilddetails.submit();             // Submit the page
+	return true;
+}
+
+function Hide(hide) {
+	//alert("In dropDownchange() method");
+    // window.location = "Blocknames.html";
+    if(hide=true)
+    	{
+    	document.getElementById("Disability").style.display = 'none';
+    	}
+    else if (hide = false)
+    	{
+    	document.getElementById("Disability").style.display = 'block';
+    	}
+  //  document.Formchilddetails.action = "VillagetypenamesinSelectPlace.html";
+   // document.Formchilddetails.submit();             // Submit the page
 	return true;
 }
 </script>
@@ -72,73 +88,78 @@ function dropDownTypechange() {
 		<div id="obsah" class="content box">
 			<div class="in">
 
-				<form:form modelAttribute="PlaceHelper" name="Formselectplace" method="post" action="SelectPlace.html">
+				<form:form modelAttribute="PlaceHelper" name="Formchilddetails" method="post" action="Childdetailsadder.html">
 					<form:errors path="*" cssClass="errorblock" element="div" />
-					
+					<form:hidden path="id" />
 					<table>
+						
 						<tr>
-							<td><form:label path="district_id">District</form:label></td>
-							<td><form:select path="district_id" onChange="return dropDownDistrictchange();">
-							<form:option value="-1" label="--- Select ---" /> 
-							<c:forEach items="${DistrictNameList}" var="District">
-								<form:option value="${District.ID}" label="${District.district_name}" /> 	
-							</c:forEach>
-							</form:select></td>
-							<td><form:errors path="district_id" cssClass="error" /></td>
+							<td>Child Name:</td>
+							<td><form:input path="child_name" /></td>
+							<td><form:errors path="child_name" cssClass="error" /></td>
 						</tr>
 						<tr>
-							<td><form:label path="block_id">Block</form:label></td>
-							<td><form:select path="block_id" onChange="return dropDownBlockchange();">
-							<form:option value="-1" label="--- Select ---" /> 
-							<c:forEach items="${BlockNameList}" var="Block">
-								<form:option value="${Block.block_id}" label="${Block.block_name}" /> 	
-							</c:forEach>
-							</form:select></td>
-							<td><form:errors path="block_id" cssClass="error" /></td>
+							<td>Father Name:</td>
+							<td><form:input path="father_name" /></td>
+							<td><form:errors path="father_name" cssClass="error" /></td>
+						</tr>
+						<tr>
+							<td>Mother Name:</td>
+							<td><form:input path="mother_name" /></td>
+							<td><form:errors path="mother_name" cssClass="error" /></td>
+						</tr>
+						<tr>
+							<td>House No:</td>
+							<td><form:input path="house_no" /></td>
+							<td><form:errors path="house_no" cssClass="error" /></td>
+						</tr>
+						<tr>
+							<td>Date Of Birth:</td>
+							<td><form:input path="date_of_birth" /></td>
+							<td><form:errors path="date_of_birth" cssClass="error" /></td>
+						</tr>
+						<tr>
+							<td>Gender:</td>
+							<td><form:radiobutton path="gender" value="M" />Male 
+								<form:radiobutton path="gender" value="F" />Female
+							</td>
+							
 							
 						</tr>
 						<tr>
-							<td><form:label path="cluster_id">Cluster</form:label></td>
-							<td><form:select path="cluster_id">
-							<form:option value="-1" label="--- Select ---" /> 
-							<c:forEach items="${ClustersNameList}" var="Clusters">
-								<form:option value="${Clusters.cluster_id}" label="${Clusters.cluster_name}" /> 	
-							</c:forEach>
-							</form:select></td>
-							<td><form:errors path="cluster_id" cssClass="error" /></td>
-							
+							<td>Caste:</td>
+							<td><form:input path="caste" /></td>
+							<td><form:errors path="caste" cssClass="error" /></td>
 						</tr>
 						<tr>
-							<td><form:label path="type_id">Type</form:label></td>
-							<td><form:select path="type_id" onChange="return dropDownTypechange();">
-							<form:option value="-1" label="--- Select ---" /> 
-								<form:option value="1" label="Panchayat" />	
-								<form:option value="2" label="Town" />
-							</form:select></td>
-							<td><form:errors path="type_id" cssClass="error" /></td>
-							
+							<td>Caste Type:</td>
+							<td><form:select path="child_name" >
+								<form:option value="-1" label="--- Select ---" />
+								<form:option value="1" label="SC" />
+								<form:option value="2" label="ST" />
+								<form:option value="3" label="OBC" />
+								<form:option value="4" label="General" />
+								</form:select>
+							</td>
+							<td><form:errors path="child_name" cssClass="error" /></td>
 						</tr>
 						<tr>
-							<td><form:label path="villagetypenames_id">Kshetra</form:label></td>
-							<td><form:select path="villagetypenames_id" onChange="return dropDownVillagetypenameschange();">
-							<form:option value="-1" label="--- Select ---" /> 
-							<c:forEach items="${VillagetypenamesList}" var="villagetypenames">
-								<form:option value="${villagetypenames.id}" label="${villagetypenames.name}" /> 	
-							</c:forEach>
-							</form:select></td>
-							<td><form:errors path="villagetypenames_id" cssClass="error" /></td>
+							<td>Is the Child Disable</td>
+							<td><form:radiobutton path="isdisable" value="0" onSelect="Hide(false)"/>Yes 
+								<form:radiobutton path="isdisable" value="1" onSelect="Hide(true)"/>No
+							</td>
 							
 						</tr>
-						<tr>
-							<td><form:label path="village_id">Village/Ward</form:label></td>
-							<td><form:select path="village_id">
+						
+						<tr id="Disability">
+							<td><form:label path="disabilityid">District</form:label></td>
+							<td><form:select path="disabilityid" onChange="return dropDownDistrictchange();">
 							<form:option value="-1" label="--- Select ---" /> 
-							<c:forEach items="${VillageList}" var="village">
-								<form:option value="${village.id}" label="${village.name}" /> 	
+							<c:forEach items="${DisabilityList}" var="Disability">
+								<form:option value="${Disability.ID}" label="${Disability.reason}" /> 	
 							</c:forEach>
 							</form:select></td>
-							<td><form:errors path="villagetypenames_id" cssClass="error" /></td>
-							
+							<td><form:errors path="disabilityid" cssClass="error" /></td>
 						</tr>
 						
 						<tr>

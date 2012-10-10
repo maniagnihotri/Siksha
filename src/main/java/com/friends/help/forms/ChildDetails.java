@@ -52,6 +52,15 @@ public class ChildDetails {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "Disability", nullable = false)
 	private Disability disability;
+	
+	@Column(name="Cast_Category_Type", nullable = false, insertable=false, updatable=false)
+	private int casteid;
+	
+	@Column(name="Disability", nullable = false, insertable=false, updatable=false)
+	private int disabilityid;
+	
+	@Column(name="Disability", nullable = false, insertable=false, updatable=false)
+	private int isdisable;
 
 	public int getId() {
 		return id;
@@ -140,6 +149,29 @@ public class ChildDetails {
 	public void setDisability(Disability disability) {
 		this.disability = disability;
 	}
-	
+	public int getCasteid() {
+		return casteid;
+	}
+
+	public void setCasteid(int casteid) {
+		this.casteid = casteid;
+	}
+
+	public int getDisabilityid() {
+		return disabilityid;
+	}
+
+	public void setDisabilityid(int disabilityid) {
+		this.disabilityid = disabilityid;
+	}
+
+	public int getIsdisable() {
+		return isdisable;
+	}
+
+	public void setIsdisable(int isdisable) {
+		this.isdisable = isdisable;
+	}
+
 
 }
