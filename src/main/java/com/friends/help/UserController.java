@@ -28,7 +28,7 @@ public class UserController {
 	}
 		@RequestMapping(value="/userAdder.html", method= RequestMethod.POST)
 		public ModelAndView add(@ModelAttribute("user") User user, BindingResult result, ModelMap model ,Locale locale){
-			System.out.println("User: "+user+" : "+user.getFirstname());
+		//	System.out.println("User: "+user+" : "+user.getFirstname());
 			//if("admin".equals(user.getUserId())&& "admin".equals(user.getPassword())){
 				//model.put("user", user.getUserId());
 				userdao.saveUser(user);

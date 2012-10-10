@@ -1,7 +1,10 @@
 package com.friends.help;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -45,8 +48,10 @@ public class SelectPlaceController {
 	public VillageTypeNamesdao villagetypenamesdao;
 	
 	@RequestMapping(value = "/SelectPlace.html", method = RequestMethod.GET)
-	public ModelAndView initForm(ModelMap model) {
-
+	public ModelAndView initForm(ModelMap model, Principal principal, HttpSession session) {
+		String user = principal.getName();
+		user = user.substring(0,1).toUpperCase()+user.substring(1).toLowerCase();
+		session.setAttribute("user", user);
 		PlaceHelper placehelper = new PlaceHelper();
 		model.addAttribute("PlaceHelper", placehelper);
 		return new ModelAndView("selectPlace", "command", placehelper);

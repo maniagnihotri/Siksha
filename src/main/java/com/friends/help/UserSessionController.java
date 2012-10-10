@@ -26,28 +26,41 @@ public class UserSessionController {
 	@RequestMapping(value="/tryLogin.html", method= RequestMethod.POST)
 	public ModelAndView login(@ModelAttribute("user") User user, BindingResult result, ModelMap model ,Locale locale){
 		
-		System.out.println("UserEntered: "+user+" : "+user.getFirstname());
+	/*	System.out.println("UserEntered: "+user+" : "+user.getFirstname());
 		
 		User fromdb = userdao.getUser(user.getFirstname());
 				
 		if( fromdb.getPassword().equals(user.getPassword())){
 			model.put("user", user.getFirstname());
-			
+	*/		
 			//return new ModelAndView("addDistrict", "command", new District());
 			//return new ModelAndView("home",model);
 			return new ModelAndView(new RedirectView("SelectPlace.html"));
 		}
-		else return new ModelAndView(new RedirectView("login.html"));
+	//	else return new ModelAndView(new RedirectView("login.html"));
 		
-	}
+	//}
 	
 	@RequestMapping("/login.html")
     public ModelAndView login() {
-         
+         System.out.println("In here now");
         return new ModelAndView("login", "command", new User());
     }
 	
+	@RequestMapping("/logoff.html")
+    public ModelAndView logoff() {
+         
+		return new ModelAndView("login", "command", new User());
+    }
 	
+	/*@RequestMapping(value = "/failLogin", method = RequestMethod.GET)
+	public ModelAndView failedLogin(ModelMap model) {
+
+	model.addAttribute("error", "true");
+	model.addAttribute(new User());
+	return new ModelAndView("login", "command", model);
+
+	}*/
     
 	
 		

@@ -7,11 +7,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 @Entity
-@Table(name="USER")
+@Table(name="users")
 public class User {
 	
-	@Column(name="UserName")
-	private String firstname;
+	@Column(name="username")
+	private String j_username;
     //private String lastname;
 	@Column(name="email")
 	private String email;
@@ -20,125 +20,141 @@ public class User {
     private String telephone;
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="Userid")
+	//@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="userid")
     private String userId;
     
-	@Column(name="Password")
-	private String password;
+	@Column(name="password")
+	private String j_password;
 	
-	@Column(name="status")
-    private String status;
+	@Column(name="enabled")
+    private String enabled;
     
-    @Column(name="usertype")
-    private String userType;
+   // @Column(name="usertype")
+    private String roles;
+    
+    private boolean _spring_security_remember_me;
 	/**
 	 * @return the firstname
 	 */
-    
-	public String getFirstname() {
-		
-		return firstname;
-	}
+
 	/**
-	 * @param firstname the firstname to set
+	 * @return the _spring_security_remember_me
 	 */
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
+	public boolean is_spring_security_remember_me() {
+		return _spring_security_remember_me;
 	}
-/*	*//**
-	 * @return the lastname
-	 *//*
-	public String getLastname() {
-		return lastname;
+
+	/**
+	 * @param _spring_security_remember_me the _spring_security_remember_me to set
+	 */
+	public void set_spring_security_remember_me(boolean _spring_security_remember_me) {
+		this._spring_security_remember_me = _spring_security_remember_me;
 	}
-	*//**
-	 * @param lastname the lastname to set
-	 *//*
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
-	}*/
+
+	/**
+	 * @return the j_username
+	 */
+	public String getJ_username() {
+		return j_username;
+	}
+
+	/**
+	 * @param j_username the j_username to set
+	 */
+	public void setJ_username(String j_username) {
+		this.j_username = j_username;
+	}
+
 	/**
 	 * @return the email
 	 */
-	
 	public String getEmail() {
 		return email;
 	}
+
 	/**
 	 * @param email the email to set
 	 */
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	/**
 	 * @return the telephone
 	 */
-	
 	public String getTelephone() {
 		return telephone;
 	}
+
 	/**
 	 * @param telephone the telephone to set
 	 */
 	public void setTelephone(String telephone) {
 		this.telephone = telephone;
 	}
+
 	/**
 	 * @return the userId
-	 * 
 	 */
-	//static int i;
 	public String getUserId() {
-		//return ""+i++;
 		return userId;
 	}
+
 	/**
 	 * @param userId the userId to set
 	 */
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-	/**
-	 * @return the password
-	 */
-	
-	public String getPassword() {
-		return password;
-	}
-	/**
-	 * @param password the password to set
-	 */
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	/**
-	 * @return the status
-	 */
-	 
-	public String getStatus() {
-		return status;
-	}
-	/**
-	 * @param status the status to set
-	 */
-	public void setStatus(String status) {
-		this.status = status;
-	}
-	/**
-	 * @return the userType
-	 */
-	 
-	public String getUserType() {
-		return userType;
-	}
-	/**
-	 * @param userType the userType to set
-	 */
-	public void setUserType(String userType) {
-		this.userType = userType;
-	}
-    
-    
 
+	/**
+	 * @return the j_password
+	 */
+	public String getJ_password() {
+		return j_password;
+	}
+
+	/**
+	 * @param j_password the j_password to set
+	 */
+	public void setJ_password(String j_password) {
+		this.j_password = j_password;
+	}
+
+	/**
+	 * @return the enabled
+	 */
+	public String getEnabled() {
+		return enabled;
+	}
+
+	/**
+	 * @param enabled the enabled to set
+	 */
+	public void setEnabled(String enabled) {
+		this.enabled = enabled;
+	}
+
+	/**
+	 * @return the roles
+	 */
+	public String getRoles() {
+		return roles;
+	}
+
+	/**
+	 * @param roles the roles to set
+	 */
+	public void setRoles(String roles) {
+		this.roles = roles;
+	}
+
+	
+
+	/**
+	 * @return the username
+	 */
+	    
+	
 }

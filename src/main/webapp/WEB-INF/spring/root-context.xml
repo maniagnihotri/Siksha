@@ -4,5 +4,13 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
+	<bean id="dataSource"
+class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+
+<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+<property name="url" value="jdbc:mysql://192.168.10.4:3306/sikhsa"/>
+<property name="username" value="root" />
+<property name="password" value="root" />
+</bean>
 		
 </beans>
