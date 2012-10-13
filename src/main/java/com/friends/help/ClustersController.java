@@ -13,12 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 
 import com.friends.help.dao.Blockdao;
 import com.friends.help.dao.Clustersdao;
 import com.friends.help.dao.Districtdao;
-import com.friends.help.forms.Block;
 import com.friends.help.forms.Clusters;
 import com.friends.help.forms.District;
 import com.friends.jsp.validate.Clustersvalidator;

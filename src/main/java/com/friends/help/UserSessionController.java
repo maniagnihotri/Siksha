@@ -1,20 +1,14 @@
 package com.friends.help;
 
-import java.util.Locale;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 
 import com.friends.help.dao.Userdao;
-import com.friends.help.forms.Block;
-import com.friends.help.forms.District;
 import com.friends.help.forms.User;
 
 
@@ -23,44 +17,28 @@ public class UserSessionController {
 
 	@Autowired
 	public Userdao userdao;
-	@RequestMapping(value="/tryLogin.html", method= RequestMethod.POST)
+/*	@RequestMapping(value="/tryLogin.html", method= RequestMethod.POST)
 	public ModelAndView login(@ModelAttribute("user") User user, BindingResult result, ModelMap model ,Locale locale){
-		
-	/*	System.out.println("UserEntered: "+user+" : "+user.getFirstname());
-		
-		User fromdb = userdao.getUser(user.getFirstname());
-				
-		if( fromdb.getPassword().equals(user.getPassword())){
-			model.put("user", user.getFirstname());
-	*/		
-			//return new ModelAndView("addDistrict", "command", new District());
-			//return new ModelAndView("home",model);
 			return new ModelAndView(new RedirectView("SelectPlace.html"));
 		}
-	//	else return new ModelAndView(new RedirectView("login.html"));
-		
-	//}
-	
+*/	
 	@RequestMapping("/login.html")
     public ModelAndView login() {
-         System.out.println("In here now");
+        return new ModelAndView("login", "command", new User());
+    }
+	
+	@RequestMapping("/login.html?err=1")
+    public ModelAndView errLogin(ModelMap model) {
+		//model.addAttribute("error", attributeValue)
         return new ModelAndView("login", "command", new User());
     }
 	
 	@RequestMapping("/logoff.html")
-    public ModelAndView logoff() {
-         
+    public ModelAndView logoff(HttpSession session) {
+         session.invalidate();
 		return new ModelAndView("login", "command", new User());
     }
 	
-	/*@RequestMapping(value = "/failLogin", method = RequestMethod.GET)
-	public ModelAndView failedLogin(ModelMap model) {
-
-	model.addAttribute("error", "true");
-	model.addAttribute(new User());
-	return new ModelAndView("login", "command", model);
-
-	}*/
     
 	
 		

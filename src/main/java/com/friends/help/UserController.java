@@ -13,12 +13,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.friends.help.dao.Userdao;
 import com.friends.help.forms.User;
+import com.friends.jsp.validate.UserValidator;
 
 @Controller
 public class UserController {
 
 	@Autowired	
 	public Userdao userdao;
+	@Autowired
+	UserValidator userValidator;
 		
 		public Userdao getUserdao() {
 		return userdao;
@@ -26,18 +29,23 @@ public class UserController {
 	public void setUserdao(Userdao userdao) {
 		this.userdao = userdao;
 	}
-		@RequestMapping(value="/userAdder.html", method= RequestMethod.POST)
+		@RequestMapping(value="/addUserNew.html", method= RequestMethod.POST)
 		public ModelAndView add(@ModelAttribute("user") User user, BindingResult result, ModelMap model ,Locale locale){
-		//	System.out.println("User: "+user+" : "+user.getFirstname());
-			//if("admin".equals(user.getUserId())&& "admin".equals(user.getPassword())){
-				//model.put("user", user.getUserId());
-				userdao.saveUser(user);
-				return new ModelAndView("home",model);
-			//}
-			//else return new ModelAndView(new RedirectView("login.html"));
+
+			userValidator.validate(user, result);
+			if (result.hasErrors()) 
+				return new ModelAndView("addUser","command",model);
+			userdao.saveUser(user);
+			
+			model.addAttribute("message","User has been added");
+			return new ModelAndView("home",model);
 		}
-		/*public void setUserDAO(Userdao userDAO) {
-			this.userdao = userDAO;
-			}
-*/
+		
+		
+		@RequestMapping(value="/addUserDetailsInput.html", method= RequestMethod.GET)
+		public ModelAndView render(ModelMap model){
+				
+				return new ModelAndView("addUser","command",new User());
 		}
+
+}

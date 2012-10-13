@@ -1,10 +1,14 @@
 package com.friends.help.forms;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 @Entity
 @Table(name="users")
@@ -12,7 +16,7 @@ public class User {
 	
 	@Column(name="username")
 	private String j_username;
-    //private String lastname;
+
 	@Column(name="email")
 	private String email;
 	
@@ -20,24 +24,25 @@ public class User {
     private String telephone;
 	
 	@Id
-	//@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="userid")
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="userId",insertable=false )
     private String userId;
     
+	@Column(name="userId", nullable = false, insertable=false, updatable=false)
+	private String role;
+	
 	@Column(name="password")
 	private String j_password;
 	
 	@Column(name="enabled")
-    private String enabled;
+    private boolean enabled;
+   
+	/*@OneToMany(fetch = FetchType.EAGER, mappedBy = "roles")
+    private List <Roles> roles;*/
     
-   // @Column(name="usertype")
-    private String roles;
-    
+    @Column(name="rememberMe")
     private boolean _spring_security_remember_me;
-	/**
-	 * @return the firstname
-	 */
-
+	
 	/**
 	 * @return the _spring_security_remember_me
 	 */
@@ -59,6 +64,7 @@ public class User {
 		return j_username;
 	}
 
+	
 	/**
 	 * @param j_username the j_username to set
 	 */
@@ -125,36 +131,32 @@ public class User {
 	/**
 	 * @return the enabled
 	 */
-	public String getEnabled() {
+	public boolean getEnabled() {
 		return enabled;
 	}
 
 	/**
 	 * @param enabled the enabled to set
 	 */
-	public void setEnabled(String enabled) {
+	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
 
-	/**
-	 * @return the roles
-	 */
-	public String getRoles() {
-		return roles;
-	}
-
-	/**
-	 * @param roles the roles to set
-	 */
-	public void setRoles(String roles) {
-		this.roles = roles;
-	}
-
 	
 
 	/**
-	 * @return the username
+	 * @return the role
 	 */
-	    
-	
+	public String getRole() {
+		return role;
+	}
+
+	/**
+	 * @param role the role to set
+	 */
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+
 }

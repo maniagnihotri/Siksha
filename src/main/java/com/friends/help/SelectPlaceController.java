@@ -22,7 +22,6 @@ import com.friends.help.dao.Districtdao;
 import com.friends.help.dao.VillageTypeNamesdao;
 import com.friends.help.dao.Villagedao;
 import com.friends.help.forms.District;
-import com.friends.help.forms.School;
 import com.friends.help.util.PlaceHelper;
 import com.friends.jsp.validate.SelectPlaceValidator;
 
