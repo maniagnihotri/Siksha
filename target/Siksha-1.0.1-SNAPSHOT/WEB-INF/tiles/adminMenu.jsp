@@ -11,10 +11,13 @@
             <a href="Clustersadder.html">Add Cluster</a>
           </p>
            <p>
-            <a href="VillageTypeNamesadder.html">Add Village\Town Type</a>
+            <a href="VillageTypeNamesadder.html">Add Panchaayat\Town Type</a>
           </p>
           <p>
-            <a href="Villageadder.html">Add Village\Town Type</a>
+            <a href="Villageadder.html">Add Village\Town</a>
+          </p>
+          <p>
+            <a href="Schooladder.html">Add School</a>
           </p>
 
           </div>

@@ -4,8 +4,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Select Place</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Add Child</title>
 <style>
 .error {
 	color: #ff0000;
@@ -19,8 +19,34 @@
 	margin: 16px;
 }
 </style>
+<link rel="stylesheet" type="text/css" media="all" href="resources/css/jsDatePick_ltr.min.css" />
+<script type="text/javascript" src="resources/js/jsDatePick.min.1.3.js"></script>
 
 <script language="Javascript">
+
+//document.onready = Hide(true);
+window.onload = work();
+	
+	
+	
+	function work(){
+		new JsDatePick({
+			useMode:2,
+			target:"Date",
+			dateFormat:"%d-%M-%Y"
+			/*selectedDate:{				This is an example of what the full configuration offers.
+				day:5,						For full documentation about these settings please see the full version of the code.
+				month:9,
+				year:2006
+			},
+			yearsRange:[1978,2020],
+			limitToToday:false,
+			cellColorScheme:"beige",
+			dateFormat:"%m-%d-%Y",
+			imgPath:"img/",
+			weekStartDay:1*/
+		});
+	};
 function Add()
 {
 	//alert("inside add method");
@@ -31,7 +57,7 @@ function Add()
     return true;
 }
 
-function dropDownDistrictchange() {
+/* function dropDownDistrictchange() {
 	//alert("In dropDownchange() method");
     // window.location = "Blocknames.html";
     document.Formchilddetails.action = "BlocknamesinSelectPlace.html";
@@ -61,18 +87,21 @@ function dropDownTypechange() {
     document.Formchilddetails.action = "VillagetypenamesinSelectPlace.html";
     document.Formchilddetails.submit();             // Submit the page
 	return true;
-}
+} */
 
 function Hide(hide) {
-	//alert("In dropDownchange() method");
+//	alert("In Hide method");
     // window.location = "Blocknames.html";
-    if(hide=true)
+    var t = document.getElementById("Disability");
+    if(hide)
     	{
-    	document.getElementById("Disability").style.display = 'none';
+    	//alert("In if Hide method");
+    	t.rows[10].style.display = 'none';
     	}
-    else if (hide = false)
+    else
     	{
-    	document.getElementById("Disability").style.display = 'block';
+    	//alert("In else Hide method");
+    	t.rows[10].style.display = 'block';
     	}
   //  document.Formchilddetails.action = "VillagetypenamesinSelectPlace.html";
    // document.Formchilddetails.submit();             // Submit the page
@@ -81,17 +110,20 @@ function Hide(hide) {
 </script>
 
 </head>
-<body>
+<body onLoad="Hide(true);work();">
 	<%@include file="top.jsp"%>
 	<div id="container" class="box">
 
 		<div id="obsah" class="content box">
 			<div class="in">
-
-				<form:form modelAttribute="PlaceHelper" name="Formchilddetails" method="post" action="Childdetailsadder.html">
+			
+				<form:form modelAttribute="ChildDetails" name="Formchilddetails" method="post" action="Childdetailsadder.html">
 					<form:errors path="*" cssClass="errorblock" element="div" />
 					<form:hidden path="id" />
-					<table>
+					<table id="Disability">
+						<tr><td>You are entering details to this village/town</td>
+							<td>${VillageName}</td>						
+						</tr>
 						
 						<tr>
 							<td>Child Name:</td>
@@ -115,7 +147,7 @@ function Hide(hide) {
 						</tr>
 						<tr>
 							<td>Date Of Birth:</td>
-							<td><form:input path="date_of_birth" /></td>
+							<td><form:input path="date_of_birth" id="Date" /></td>
 							<td><form:errors path="date_of_birth" cssClass="error" /></td>
 						</tr>
 						<tr>
@@ -145,25 +177,25 @@ function Hide(hide) {
 						</tr>
 						<tr>
 							<td>Is the Child Disable</td>
-							<td><form:radiobutton path="isdisable" value="0" onSelect="Hide(false)"/>Yes 
-								<form:radiobutton path="isdisable" value="1" onSelect="Hide(true)"/>No
+							<td><form:radiobutton path="isdisable" value="0" onClick="Hide(false)"/>Yes 
+								<form:radiobutton path="isdisable" value="1" onClick="Hide(true)"/>No
 							</td>
 							
 						</tr>
 						
-						<tr id="Disability">
+						<tr>
 							<td><form:label path="disabilityid">District</form:label></td>
-							<td><form:select path="disabilityid" onChange="return dropDownDistrictchange();">
+							<td><form:select path="disabilityid">
 							<form:option value="-1" label="--- Select ---" /> 
 							<c:forEach items="${DisabilityList}" var="Disability">
-								<form:option value="${Disability.ID}" label="${Disability.reason}" /> 	
+								<form:option value="${Disability.id}" label="${Disability.reason}" /> 	
 							</c:forEach>
 							</form:select></td>
 							<td><form:errors path="disabilityid" cssClass="error" /></td>
 						</tr>
 						
 						<tr>
-							<td><input type="submit" value="Add Block" onClick="return Add();" /></td>
+							<td><input type="submit" value="Add Child" onClick="return Add();" /></td>
 							
 						</tr>
 					</table>

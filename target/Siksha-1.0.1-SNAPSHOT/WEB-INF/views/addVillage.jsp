@@ -164,7 +164,7 @@ function dropDownTypechange() {
    
 
 				<table>
-				<c:forEach items="${VillageTypeNamesList}" var="VillageList">
+				<c:forEach items="${VillageList}" var="attName">
 					<tr>
 						<td>
 							<c:out value="${attName.id}"/><br/>

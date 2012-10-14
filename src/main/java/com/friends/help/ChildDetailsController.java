@@ -1,5 +1,8 @@
 package com.friends.help;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -11,14 +14,15 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.friends.help.dao.Blockdao;
+import com.friends.help.dao.ChildDetailsdao;
 import com.friends.help.dao.Clustersdao;
 import com.friends.help.dao.Districtdao;
 import com.friends.help.dao.Schooldao;
 import com.friends.help.dao.VillageTypeNamesdao;
 import com.friends.help.dao.Villagedao;
 import com.friends.help.forms.ChildDetails;
-import com.friends.help.forms.School;
-import com.friends.jsp.validate.Schoolvalidator;
+import com.friends.help.forms.Disability;
+import com.friends.jsp.validate.Childvalidator;
 
 @Controller
 public class ChildDetailsController {
@@ -27,7 +31,7 @@ public class ChildDetailsController {
 	public Villagedao villagedao;
 	
 	@Autowired
-	Schoolvalidator schoolvalidator;
+	Childvalidator childvalidator;
 	
 	@Autowired
 	public Blockdao blockdao;
@@ -44,6 +48,9 @@ public class ChildDetailsController {
 	@Autowired
 	public Schooldao schooldao;
 	
+	@Autowired
+	public ChildDetailsdao childdetailsdao;
+	
 	@RequestMapping(value = "/Childdetailsadder.html", method = RequestMethod.GET)
 	public ModelAndView initForm(ModelMap model) {
 
@@ -56,29 +63,36 @@ public class ChildDetailsController {
 	public ModelAndView processSubmit(@ModelAttribute("ChildDetails") ChildDetails childdetails,
 			BindingResult result, SessionStatus status, ModelMap model) {
 		
-		schoolvalidator.setSchool(schooldao.getSchoolObject(school.getName(),school.getVillage_id()));
-		schoolvalidator.setRequesttype(0);
-		schoolvalidator.validate(school, result);
+		//schoolvalidator.setSchool(schooldao.getSchoolObject(school.getName(),school.getVillage_id()));
+		//schoolvalidator.setRequesttype(0);
+		childvalidator.validate(childdetails, result);
 
 		if (result.hasErrors()) {
-			return new ModelAndView("addSchool");
+			return new ModelAndView("addChild");
 		} else {
-			school.setSchool_category(schooldao.getSchoolCategoryById(school.getCategory_id()));
-			school.setT_or_v_id(villagedao.getVillageObjectbyID(school.getVillage_id()));
-			schooldao.addSchool(school);
+			childdetails.setCaste_type(childdetailsdao.getCastteype(childdetails.getCasteid()));
+			childdetails.setDisability(childdetailsdao.getDisability(childdetails.getDisabilityid()));
+			//childdetails.setVillage(village);
+			//school.setT_or_v_id(villagedao.getVillageObjectbyID(school.getVillage_id()));
+			childdetailsdao.saveChild(childdetails);
 			status.setComplete();
-			model.put("BlockNameList",blockdao.getBlocks(school.getDistrict_id())) ;
-			model.put("ClustersNameList",clustersdao.getClustersList(school.getBlock_id())) ;
-			//model.put("Schooltypelist", Schooltypenamesdao.getSchoolType());
-			model.put("VillagetypenamesList", villagetypenamesdao.getVillageTypeNamesList(school.getCluster_id(),school.getType_id()));
-			//model.put("SchoolList", Schooldao.getSchoolList(school.getVillage_id()));
-			model.put("VillageList", villagedao.getVillageList(school.getVillagetypenames_id()));
-			model.put("SchoolList", schooldao.getSchoolList(school.getVillage_id()));
-			school.setName(null);
-			model.addAttribute("School", school);
-	
-			return new ModelAndView("addSchool", "command", school);
+			/*
+			model.addAttribute("School", school);*/
+			ChildDetails childdetails2 = new ChildDetails();
+			childdetails2.setVillage(childdetails.getVillage());
+			childdetails2.setGender('M');
+			childdetails2.setIsdisable(1);
+			return new ModelAndView("addChild", "command", childdetails2);
 		}
+		
 	}
 
+	@ModelAttribute("DisabilityList")
+	public List<Disability> populateDisability() {
+
+		List<Disability> DisabilityList = new ArrayList<Disability>();
+
+		DisabilityList = childdetailsdao.getDisabilityList();
+		return DisabilityList;
+	}
 }

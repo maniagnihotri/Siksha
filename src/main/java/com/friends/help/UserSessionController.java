@@ -40,10 +40,10 @@ public class UserSessionController {
 	//	else return new ModelAndView(new RedirectView("login.html"));
 		
 	//}
-	
+	  
 	@RequestMapping("/login.html")
     public ModelAndView login() {
-         System.out.println("In here now");
+        // System.out.println("In here now");
         return new ModelAndView("login", "command", new User());
     }
 	
