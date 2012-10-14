@@ -6,15 +6,29 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Add-User Page</title>
+<style>
+.error {
+	color: #ff0000;
+}
+
+.errorblock {
+	color: #000;
+	background-color: #ffEEEE;
+	border: 3px solid #ff0000;
+	padding: 8px;
+	margin: 16px;
+}
+</style>
 </head>
 <body>
+
 <%@include file="top.jsp" %>
 <form:form method="post" action="userAdder.html">
- 
+ <form:errors path="*" cssClass="errorblock" element="div" />
     <table>
     <tr>
-        <td><form:label path="firstname">FirstName</form:label></td>
-        <td><form:input path="firstname" /></td> 
+        <td><form:label path="username">Username</form:label></td>
+        <td><form:input path="username" /></td> 
     </tr>
     <tr>
         <td><form:label path="password">Password</form:label></td>

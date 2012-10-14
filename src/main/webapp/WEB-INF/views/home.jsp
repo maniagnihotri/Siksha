@@ -15,8 +15,9 @@
 					Hello
 					<c:out value="${user}"></c:out>
 				</h1>
-
-				<P>You have logged in at ${serverTime}.</P>
+<c:if test="${not empty message}">
+				<P>${message}.</P>
+				</c:if>
 
 			</div>
 		</div>

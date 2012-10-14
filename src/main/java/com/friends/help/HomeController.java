@@ -1,8 +1,6 @@
 package com.friends.help;
 
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.Locale;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,14 +20,8 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/home.html")
-	public String home(Locale locale, ModelMap model) {
-		logger.info("Welcome home! the client locale is "+ locale.toString());
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.put("serverTime", formattedDate );
+	public String home(HttpSession session, ModelMap model) {
+		model.addAttribute("user",session.getAttribute("user"));
 		
 		return "home";
 	}
