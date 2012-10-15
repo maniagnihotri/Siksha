@@ -15,5 +15,6 @@ public interface ChildDetailsdao {
 	public CasteType getCastteype(int castid);
 	public Disability getDisability(int disabilityid);
 	public List<Disability> getDisabilityList(); 
+	public  int getNumberOfRows();
 
 }

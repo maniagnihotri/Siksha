@@ -120,9 +120,10 @@ function Hide(hide) {
 				<form:form modelAttribute="ChildDetails" name="Formchilddetails" method="post" action="Childdetailsadder.html">
 					<form:errors path="*" cssClass="errorblock" element="div" />
 					<form:hidden path="id" />
+					<form:hidden path="villageid" value="${Village.id}" />
 					<table id="Disability">
 						<tr><td>You are entering details to this village/town</td>
-							<td>${VillageName}</td>						
+							<td>${Village.name}</td>						
 						</tr>
 						
 						<tr>
@@ -147,8 +148,8 @@ function Hide(hide) {
 						</tr>
 						<tr>
 							<td>Date Of Birth:</td>
-							<td><form:input path="date_of_birth" id="Date" /></td>
-							<td><form:errors path="date_of_birth" cssClass="error" /></td>
+							<td><form:input path="date" id="Date" /></td>
+							<td><form:errors path="date" cssClass="error" /></td>
 						</tr>
 						<tr>
 							<td>Gender:</td>
@@ -165,7 +166,7 @@ function Hide(hide) {
 						</tr>
 						<tr>
 							<td>Caste Type:</td>
-							<td><form:select path="child_name" >
+							<td><form:select path="casteid" >
 								<form:option value="-1" label="--- Select ---" />
 								<form:option value="1" label="SC" />
 								<form:option value="2" label="ST" />
@@ -173,7 +174,7 @@ function Hide(hide) {
 								<form:option value="4" label="General" />
 								</form:select>
 							</td>
-							<td><form:errors path="child_name" cssClass="error" /></td>
+							<td><form:errors path="casteid" cssClass="error" /></td>
 						</tr>
 						<tr>
 							<td>Is the Child Disable</td>
@@ -186,7 +187,7 @@ function Hide(hide) {
 						<tr>
 							<td><form:label path="disabilityid">District</form:label></td>
 							<td><form:select path="disabilityid">
-							<form:option value="-1" label="--- Select ---" /> 
+							<form:option value="1" label="--- Select ---" /> 
 							<c:forEach items="${DisabilityList}" var="Disability">
 								<form:option value="${Disability.id}" label="${Disability.reason}" /> 	
 							</c:forEach>

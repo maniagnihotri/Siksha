@@ -77,7 +77,7 @@ public class SelectPlaceController {
 			childdetails.setGender('M');
 			childdetails.setIsdisable(1);
 			model.addAttribute("ChildDetails", childdetails);
-			model.addAttribute("VillageName", villagedao.getVillageObjectbyID(placehelper.getVillage_id()).getName());
+			model.addAttribute("Village", villagedao.getVillageObjectbyID(placehelper.getVillage_id()));
 			return new ModelAndView("addChild", "command", childdetails);
 			//return new ModelAndView("selectPlace", "command", placehelper);
 		}
@@ -160,7 +160,7 @@ public class SelectPlaceController {
 		List<Disability> DisabilityList = new ArrayList<Disability>();
 
 		DisabilityList = childdetailsdao.getDisabilityList();
-		DisabilityList.remove(0);
+		DisabilityList.remove(1);
 		return DisabilityList;
 	}
 

@@ -1,5 +1,9 @@
 package com.friends.jsp.validate;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
@@ -17,26 +21,38 @@ public class Childvalidator implements Validator {
 	@Override
 	public void validate(Object arg0, Errors errors) {
 		// TODO Auto-generated method stub
-		ChildDetails childdetails = new ChildDetails();
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "child_name",
-				"required.child_name", "Field name is required.");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "father_name",
-				"required.father_name", "Field name is required.");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "mother_name",
-				"required.mother_name", "Field name is required.");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "house_no",
-				"required.house_no", "Field name is required.");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "date_of_birth",
-				"required.date_of_birth", "Field name is required.");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "caste",
-				"required.caste", "Field name is required.");
-		if(childdetails.getCasteid()==-1){
-			errors.rejectValue("district_id", "required.district");
+		ChildDetails childdetails = (ChildDetails) arg0;
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
+		if (childdetails.getDate() != "" || childdetails.getDate() != null) {
+			try {
+				Date date = sdf.parse(childdetails.getDate());
+				Date today = new Date();
+				if (date.compareTo(today) > 0) {
+					errors.rejectValue("date", "date.error");
+				}
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		if(childdetails.getIsdisable()==0)
-		{
-			if(childdetails.getDisabilityid()==-1){
-				errors.rejectValue("district_id", "required.district");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "child_name",
+				"required.child_name");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "father_name",
+				"required.father_name");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "mother_name",
+				"required.mother_name");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "house_no",
+				"required.house_no");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "date",
+				"required.date_of_birth");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "caste",
+				"required.caste");
+		if (childdetails.getCasteid() == -1) {
+			errors.rejectValue("casteid", "required.disability");
+		}
+		if (childdetails.getIsdisable() == 0) {
+			if (childdetails.getDisabilityid() == 0) {
+				errors.rejectValue("disabilityid", "required.disabilityid");
 			}
 		}
 	}
