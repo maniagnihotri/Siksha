@@ -9,13 +9,14 @@
   <global-method-security pre-post-annotations="enabled" /> 
   
 	<http auto-config="true" >
-		<intercept-url pattern="/SelectPlace*" access="ROLE_USER" />
 		<intercept-url pattern="/index*" filters="none" />
 		<intercept-url pattern="/*login*" filters="none" />
 		<intercept-url pattern="/**/*.gif" filters="none" />
 		<intercept-url pattern="/**/*.css" filters="none" />
 		<intercept-url pattern="/**/*.jpg" filters="none" />
-		<intercept-url pattern="/**" access="ROLE_USER" />
+		<intercept-url pattern="/**/*.png" filters="none" />
+		<intercept-url pattern="/**/*.js" filters="none" />
+		<intercept-url pattern="/**" access="ROLE_USER,ROLE_ADMIN" />
 		
         <form-login always-use-default-target="true" login-page="/login.html" default-target-url="/SelectPlace.html" authentication-failure-url="/failLogin.html" />
 		<logout logout-success-url="/logoff.html"  invalidate-session="true"/>

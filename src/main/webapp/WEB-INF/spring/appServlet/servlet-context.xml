@@ -24,6 +24,8 @@
 	<beans:bean class="com.friends.jsp.validate.Villagevalidator" />
 	<beans:bean class="com.friends.jsp.validate.Schoolvalidator" />
 	<beans:bean class="com.friends.jsp.validate.SelectPlaceValidator" />
+	<beans:bean class="com.friends.jsp.validate.Childvalidator" />
+	<beans:bean class="com.friends.jsp.validate.UserValidator" />
 	
 	
 	<beans:bean id="messageSource"
@@ -100,6 +102,10 @@
 	</beans:bean>
 	
 	<beans:bean id="mySchoolDAO" class="com.friends.help.dao.SchooldaoImpl">
+		<beans:property name="sessionFactory" ref="mySessionFactory"/>
+	</beans:bean>
+	
+	<beans:bean id="myChildDAO" class="com.friends.help.dao.ChildDetailsdaoImpl">
 		<beans:property name="sessionFactory" ref="mySessionFactory"/>
 	</beans:bean>
 </beans:beans>

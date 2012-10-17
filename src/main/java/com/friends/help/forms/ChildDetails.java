@@ -17,9 +17,8 @@ import javax.persistence.Table;
 public class ChildDetails {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="ID")
-	private int id;
+	private long id;
 	
 	@Column(name="Name")
 	private String child_name;
@@ -61,12 +60,34 @@ public class ChildDetails {
 	
 	@Column(name="Disability", nullable = false, insertable=false, updatable=false)
 	private int isdisable;
+	
+	@Column(name="Date_of_Birth", nullable = false, insertable=false, updatable=false)
+	private String date;
 
-	public int getId() {
+	@Column(name="Village_Id", nullable = false, insertable=false, updatable=false)
+	private int villageid;
+	
+	public int getVillageid() {
+		return villageid;
+	}
+
+	public void setVillageid(int villageid) {
+		this.villageid = villageid;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

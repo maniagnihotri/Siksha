@@ -22,6 +22,8 @@
 	<beans:bean class="com.friends.jsp.validate.Clustersvalidator" />
 	<beans:bean class="com.friends.jsp.validate.VillageTypeNamesvalidator" />
 	<beans:bean class="com.friends.jsp.validate.Villagevalidator" />
+	<beans:bean class="com.friends.jsp.validate.Schoolvalidator" />
+	<beans:bean class="com.friends.jsp.validate.SelectPlaceValidator" />
 	
 	
 	<beans:bean id="messageSource"
@@ -41,7 +43,7 @@
 	
 	<beans:bean id="myDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 			<beans:property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-			<beans:property name="url" value="jdbc:mysql://localhost:3306/sikhsa"/>
+			<beans:property name="url" value="jdbc:mysql://192.168.10.4:3306/sikhsa"/>
 			<beans:property name="username" value="root"/>
 			<beans:property name="password" value="root"/>
 	</beans:bean>
@@ -57,6 +59,11 @@
 				<beans:value>com.friends.help.forms.VillageType</beans:value>
 				<beans:value>com.friends.help.forms.VillageTypeNames</beans:value>
 				<beans:value>com.friends.help.forms.Village</beans:value>
+				<beans:value>com.friends.help.forms.SchoolCategory</beans:value>
+				<beans:value>com.friends.help.forms.School</beans:value>
+				<beans:value>com.friends.help.forms.CasteType</beans:value>
+				<beans:value>com.friends.help.forms.Disability</beans:value>
+				<beans:value>com.friends.help.forms.ChildDetails</beans:value>
 			</beans:list>
 				</beans:property>
 		<beans:property name="hibernateProperties">
@@ -89,6 +96,10 @@
 	</beans:bean>
 	
 	<beans:bean id="myVillageDAO" class="com.friends.help.dao.VillagedaoImpl">
+		<beans:property name="sessionFactory" ref="mySessionFactory"/>
+	</beans:bean>
+	
+	<beans:bean id="mySchoolDAO" class="com.friends.help.dao.SchooldaoImpl">
 		<beans:property name="sessionFactory" ref="mySessionFactory"/>
 	</beans:bean>
 </beans:beans>

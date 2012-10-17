@@ -17,10 +17,13 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.friends.help.dao.Blockdao;
+import com.friends.help.dao.ChildDetailsdao;
 import com.friends.help.dao.Clustersdao;
 import com.friends.help.dao.Districtdao;
 import com.friends.help.dao.VillageTypeNamesdao;
 import com.friends.help.dao.Villagedao;
+import com.friends.help.forms.ChildDetails;
+import com.friends.help.forms.Disability;
 import com.friends.help.forms.District;
 import com.friends.help.util.PlaceHelper;
 import com.friends.jsp.validate.SelectPlaceValidator;
@@ -44,6 +47,9 @@ public class SelectPlaceController {
 	public Districtdao districtdao;
 	
 	@Autowired
+	public ChildDetailsdao childdetailsdao;
+	
+	@Autowired
 	public VillageTypeNamesdao villagetypenamesdao;
 	
 	@RequestMapping(value = "/SelectPlace.html", method = RequestMethod.GET)
@@ -65,21 +71,15 @@ public class SelectPlaceController {
 		if (result.hasErrors()) {
 			return new ModelAndView("selectPlace");
 		} else {
-			/*school.setSchool_category(schooldao.getSchoolCategoryById(school.getCategory_id()));
-			school.setT_or_v_id(villagedao.getVillageObjectbyID(school.getVillage_id()));
-			schooldao.addSchool(school);
-			status.setComplete();
-			model.put("BlockNameList",blockdao.getBlocks(school.getDistrict_id())) ;
-			model.put("ClustersNameList",clustersdao.getClustersList(school.getBlock_id())) ;
-			//model.put("Schooltypelist", Schooltypenamesdao.getSchoolType());
-			model.put("VillagetypenamesList", villagetypenamesdao.getVillageTypeNamesList(school.getCluster_id(),school.getType_id()));
-			//model.put("SchoolList", Schooldao.getSchoolList(school.getVillage_id()));
-			model.put("VillageList", villagedao.getVillageList(school.getVillagetypenames_id()));
-			model.put("SchoolList", schooldao.getSchoolList(school.getVillage_id()));
-			school.setName(null);
-			model.addAttribute("School", school);*/
-	
-			return new ModelAndView("selectPlace", "command", placehelper);
+			
+			ChildDetails childdetails = new ChildDetails();
+			childdetails.setVillage(villagedao.getVillageObjectbyID(placehelper.getVillage_id()));
+			childdetails.setGender('M');
+			childdetails.setIsdisable(1);
+			model.addAttribute("ChildDetails", childdetails);
+			model.addAttribute("Village", villagedao.getVillageObjectbyID(placehelper.getVillage_id()));
+			return new ModelAndView("addChild", "command", childdetails);
+			//return new ModelAndView("selectPlace", "command", placehelper);
 		}
 	}
 	
@@ -152,6 +152,16 @@ public class SelectPlaceController {
 		model.put("VillageList", villagedao.getVillageList(placehelper.getVillagetypenames_id()));
 		return new ModelAndView("selectPlace", "command", placehelper);
 		//return new ModelAndView(new RedirectView("Schooladder.html"));
+	}
+	
+	@ModelAttribute("DisabilityList")
+	public List<Disability> populateDisability() {
+
+		List<Disability> DisabilityList = new ArrayList<Disability>();
+
+		DisabilityList = childdetailsdao.getDisabilityList();
+		DisabilityList.remove(1);
+		return DisabilityList;
 	}
 
 }
