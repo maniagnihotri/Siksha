@@ -1,4 +1,4 @@
-package me.tedyoung.blog;
+package com.friends.help.util;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
