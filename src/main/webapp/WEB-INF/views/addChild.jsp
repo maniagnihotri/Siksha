@@ -106,7 +106,7 @@ function isNumberKey(evt)
 
 		<div id="obsah" class="content box">
 			<div class="in">
-				<div style="font-family:verdana;color:Black;background-color:White;"><a href="SelectPlace.html">Click here to change the Village</a></div>
+				<div style="font-family:verdana;color:Black;"><a href="SelectPlace.html">Click here to change the Village</a></div>
 				<form:form modelAttribute="ChildDetails" name="Formchilddetails" method="post" action="Childdetailsadder.html">
 					<form:errors path="*" cssClass="errorblock" element="div" />
 					<form:hidden path="id" />

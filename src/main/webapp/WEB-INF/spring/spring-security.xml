@@ -25,7 +25,7 @@
 		<intercept-url pattern="/**/*.js" filters="none" />
 		<intercept-url pattern="/**" access="ROLE_USER,ROLE_ADMIN" />
 		
-        <form-login always-use-default-target="true" login-page="/login.html" default-target-url="/SelectPlace.html" authentication-failure-url="/failLogin.html" />
+        <form-login always-use-default-target="true" login-page="/login.html" default-target-url="/UserController.html" authentication-failure-url="/failLogin.html" />
 		<logout logout-success-url="/logoff.html"  invalidate-session="true"/>
         
     

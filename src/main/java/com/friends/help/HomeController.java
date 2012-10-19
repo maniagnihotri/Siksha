@@ -26,5 +26,11 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping(value = "/userHome.html")
+	public String userhome(HttpSession session, ModelMap model) {
+		model.addAttribute("user",session.getAttribute("user"));
+		
+		return "userHome";
+	}
 	
 }
