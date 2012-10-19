@@ -13,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -25,6 +26,7 @@ import com.friends.help.dao.VillageTypeNamesdao;
 import com.friends.help.dao.Villagedao;
 import com.friends.help.forms.ChildDetails;
 import com.friends.help.forms.Disability;
+import com.friends.help.forms.EducationalDetails;
 import com.friends.jsp.validate.Childvalidator;
 
 @Controller
@@ -85,34 +87,31 @@ public class ChildDetailsController {
 				//SimpleDateFormat mysqlformat = new SimpleDateFormat("yyyy-mm-dd");
 				 date= sdf.parse(childdetails.getDate());
 				 System.out.println(date.toString());
-				 //dow MMM yy
-				/* System.out.println(date.toString());
-				 
-				 Calendar c =
-				 c.
-				 
-				 
-				 Date d = new Date(date., month, date)*/
-				//mysql.mysqlformat.format(date);
-			   // mysql = mysqlformat.parse(mysqlformat.format(date));
+				
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			childdetails.setDate_of_birth(date);
+			//if(childdetails.getId()=="")
+			//{	
+			long tid;
+			tid = childdetails.getVillage().getVillageTypeNames().getClusters().getBlock().getDistrict().getID();
+			tid = tid * 100 + childdetails.getVillage().getVillageTypeNames().getClusters().getBlock().getBlock_id();
+			tid = tid * 100 + childdetails.getVillage().getVillageTypeNames().getClusters().getCluster_id();
+			tid = tid * 100 + childdetails.getVillage().getId();
+			tid = tid*100000 + childdetailsdao.getNumberOfRows() ; 
+			String s = ""+tid;
 			
-			//childdetails.setVillage(village);
-			//school.setT_or_v_id(villagedao.getVillageObjectbyID(school.getVillage_id()));
-			childdetailsdao.saveChild(childdetails);
+			childdetails.setId(s);
+			ChildDetails check = null;
+				check = childdetailsdao.getChildById(s);
+			//if(check==null)
+				childdetailsdao.saveChild(childdetails);
+			//}
 			status.setComplete();
 			
-			
-			ChildDetails childdetails2 = new ChildDetails();
-			childdetails2.setVillage(childdetails.getVillage());
-			childdetails2.setGender('M');
-			childdetails2.setIsdisable(1);
-			model.addAttribute("ChildDetails", childdetails2);
-			return new ModelAndView("addChild", "command", childdetails2);
+			return new ModelAndView("forward:/childEducation.html?childId="+childdetails.getId());
 		}
 		
 	}
@@ -125,4 +124,17 @@ public class ChildDetailsController {
 		DisabilityList = childdetailsdao.getDisabilityList();
 		return DisabilityList;
 	}
+	
+	@RequestMapping(value = "/childEducation.html", method = {RequestMethod.POST ,RequestMethod.GET} )
+	public ModelAndView educationinput(@RequestParam("childId")String childId,ModelMap model ){
+		EducationalDetails ed = new EducationalDetails();
+		//ChildDetails childdetails2 = new ChildDetails();
+		ed.setHelp_child_id(childId);
+		ChildDetails childDetails = childdetailsdao.getChildById(childId);
+		model.addAttribute("SchoolList",schooldao.getSchoolList(childDetails.getVillage().getId(),0));
+		model.addAttribute("Child", childDetails);
+		model.addAttribute("EducationalDetails",ed);
+		return new ModelAndView("addEducation", "command", ed);
+	}
+	
 }

@@ -7,17 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>add Block</title>
 <style>
-.error {
-	color: #ff0000;
-}
 
-.errorblock {
-	color: #000;
-	background-color: #ffEEEE;
-	border: 3px solid #ff0000;
-	padding: 8px;
-	margin: 16px;
-}
 </style>
 
 <script language="Javascript">
@@ -39,7 +29,7 @@ function Update()
 }
 
 function confirmation() {
-	var answer = confirm("Deleting this District,deletes all the blocks,clusters under it! Are you sure? ");
+	var answer = confirm("Deleting this Block,deletes all the areas under it! Are you sure? ");
 	if (answer){
 		//alert("Bye bye!");
 		//window.location = "http://www.google.com/";
@@ -83,12 +73,12 @@ function dropDownchange() {
 							</form:select></td>
 							
 							
-							<td><form:errors path="district" cssClass="error" /></td>
+							
 						</tr>
 						<tr>
 							<td>BlockName :</td>
 							<td><form:input path="block_name" /></td>
-							<td><form:errors path="block_name" cssClass="error" /></td>
+							
 						</tr>
 						<tr>
 							<td><input type="submit" value="Add Block" onClick="return Add();" /></td>
@@ -118,6 +108,6 @@ function dropDownchange() {
 				<!--  /c:if-->
 				</div>
 				</div>
-				<%@include file="bottom.jsp"%>
+				<%@include file="adminBottom.jsp"%>
 </body>
 </html>

@@ -9,6 +9,13 @@
   <global-method-security pre-post-annotations="enabled" /> 
   
 	<http auto-config="true" >
+		
+		<intercept-url pattern="/*District*" access="ROLE_ADMIN" />
+		<intercept-url pattern="/*dist*" access="ROLE_ADMIN" />
+		<intercept-url pattern="/*Cluster*" access="ROLE_ADMIN" />
+		<intercept-url pattern="/*Village*" access="ROLE_ADMIN" />
+		<intercept-url pattern="/*Block*" access="ROLE_ADMIN" />
+		<intercept-url pattern="/*School*" access="ROLE_ADMIN" />
 		<intercept-url pattern="/index*" filters="none" />
 		<intercept-url pattern="/*login*" filters="none" />
 		<intercept-url pattern="/**/*.gif" filters="none" />

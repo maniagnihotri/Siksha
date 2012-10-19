@@ -48,7 +48,7 @@ public class Childvalidator implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "caste",
 				"required.caste");
 		if (childdetails.getCasteid() == -1) {
-			errors.rejectValue("casteid", "required.disability");
+			errors.rejectValue("casteid", "required.castetype");
 		}
 		if (childdetails.getIsdisable() == 0) {
 			if (childdetails.getDisabilityid() == 0) {

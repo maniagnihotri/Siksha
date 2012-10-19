@@ -7,25 +7,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>add District</title>
 <style>
-.error {
-	color: #ff0000;
-}
 
-.errorblock {
-	color: #000;
-	background-color: #ffEEEE;
-	border: 3px solid #ff0000;
-	padding: 8px;
-	margin: 16px;
-}
 </style>
 <script language="Javascript">
 function Add()
 {
-	alert("inside add method");
+	//alert("inside add method");
 	
     document.Form1.action = "distView.html";
-    alert(document.Form1.action);
+    //alert(document.Form1.action);
     document.Form1.submit();             
     return true;
 }

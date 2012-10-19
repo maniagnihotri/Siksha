@@ -7,17 +7,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Add Child</title>
 <style>
-.error {
-	color: #ff0000;
-}
-
-.errorblock {
-	color: #000;
-	background-color: #ffEEEE;
-	border: 3px solid #ff0000;
-	padding: 8px;
-	margin: 16px;
-}
 </style>
 <link rel="stylesheet" type="text/css" media="all" href="resources/css/jsDatePick_ltr.min.css" />
 <script type="text/javascript" src="resources/js/jsDatePick.min.1.3.js"></script>
@@ -26,8 +15,23 @@
 
 //document.onready = Hide(true);
 window.onload = work();
-	
-	
+//window.onbeforeunload = function() {
+//    return "Dude, are you sure you want to leave?";
+//}
+	document.onkeydown = function() {    
+    switch (event.keyCode) { 
+        case 116 : //F5 button
+            event.returnValue = false;
+            event.keyCode = 0;
+            return false; 
+        case 82 : //R button
+            if (event.ctrlKey) { 
+                event.returnValue = false; 
+                event.keyCode = 0;  
+                return false; 
+            } 
+    }
+}
 	
 	function work(){
 		new JsDatePick({
@@ -39,7 +43,7 @@ window.onload = work();
 				month:9,
 				year:2006
 			},
-			yearsRange:[1978,2020],
+			yearsRange:[1997,2050],
 			limitToToday:false,
 			cellColorScheme:"beige",
 			dateFormat:"%m-%d-%Y",
@@ -57,37 +61,12 @@ function Add()
     return true;
 }
 
-/* function dropDownDistrictchange() {
-	//alert("In dropDownchange() method");
-    // window.location = "Blocknames.html";
-    document.Formchilddetails.action = "BlocknamesinSelectPlace.html";
-    document.Formchilddetails.submit();             // Submit the page
-	return true;
+function Village()
+{
+	document.Formchilddetails.action = "SelectPlace.html";
+    document.Formchilddetails.submit();             
+    return true;
 }
-
-function dropDownBlockchange() {
-	//alert("In dropDownchange() method");
-    // window.location = "Blocknames.html";
-    document.Formchilddetails.action = "ClustersnamesinSelectPlace.html";
-    document.Formchilddetails.submit();             // Submit the page
-	return true;
-}
-
-function dropDownVillagetypenameschange() {
-	//alert("In dropDownchange() method");
-    // window.location = "Blocknames.html";
-    document.Formchilddetails.action = "VillageinSelectplace.html";
-    document.Formchilddetails.submit();             // Submit the page
-	return true;
-}
-
-function dropDownTypechange() {
-	//alert("In dropDownchange() method");
-    // window.location = "Blocknames.html";
-    document.Formchilddetails.action = "VillagetypenamesinSelectPlace.html";
-    document.Formchilddetails.submit();             // Submit the page
-	return true;
-} */
 
 function Hide(hide) {
 //	alert("In Hide method");
@@ -107,6 +86,17 @@ function Hide(hide) {
    // document.Formchilddetails.submit();             // Submit the page
 	return true;
 }
+
+
+function isNumberKey(evt) 
+{ 
+   var charCode = (evt.which) ? evt.which : event.keyCode; 
+   if (charCode != 46 && charCode > 31  
+     && (charCode < 48 || charCode > 57)) 
+      return false; 
+
+   return true; 
+}
 </script>
 
 </head>
@@ -116,40 +106,40 @@ function Hide(hide) {
 
 		<div id="obsah" class="content box">
 			<div class="in">
-			
+				<div style="font-family:verdana;color:Black;background-color:White;"><a href="SelectPlace.html">Click here to change the Village</a></div>
 				<form:form modelAttribute="ChildDetails" name="Formchilddetails" method="post" action="Childdetailsadder.html">
 					<form:errors path="*" cssClass="errorblock" element="div" />
 					<form:hidden path="id" />
 					<form:hidden path="villageid" value="${Village.id}" />
 					<table id="Disability">
-						<tr><td>You are entering details to this village/town</td>
+						<tr><td>You are entering details for this village/town</td>
 							<td>${Village.name}</td>						
 						</tr>
 						
 						<tr>
 							<td>Child Name:</td>
 							<td><form:input path="child_name" /></td>
-							<td><form:errors path="child_name" cssClass="error" /></td>
+							
 						</tr>
 						<tr>
 							<td>Father Name:</td>
 							<td><form:input path="father_name" /></td>
-							<td><form:errors path="father_name" cssClass="error" /></td>
+							
 						</tr>
 						<tr>
 							<td>Mother Name:</td>
 							<td><form:input path="mother_name" /></td>
-							<td><form:errors path="mother_name" cssClass="error" /></td>
+							
 						</tr>
 						<tr>
 							<td>House No:</td>
-							<td><form:input path="house_no" /></td>
-							<td><form:errors path="house_no" cssClass="error" /></td>
+							<td><form:input path="house_no" onkeypress="return isNumberKey(event)" /></td>
+							
 						</tr>
 						<tr>
 							<td>Date Of Birth:</td>
 							<td><form:input path="date" id="Date" /></td>
-							<td><form:errors path="date" cssClass="error" /></td>
+							
 						</tr>
 						<tr>
 							<td>Gender:</td>
@@ -162,7 +152,7 @@ function Hide(hide) {
 						<tr>
 							<td>Caste:</td>
 							<td><form:input path="caste" /></td>
-							<td><form:errors path="caste" cssClass="error" /></td>
+							
 						</tr>
 						<tr>
 							<td>Caste Type:</td>
@@ -174,7 +164,7 @@ function Hide(hide) {
 								<form:option value="4" label="General" />
 								</form:select>
 							</td>
-							<td><form:errors path="casteid" cssClass="error" /></td>
+							
 						</tr>
 						<tr>
 							<td>Is the Child Disable</td>
@@ -192,8 +182,11 @@ function Hide(hide) {
 								<form:option value="${Disability.id}" label="${Disability.reason}" /> 	
 							</c:forEach>
 							</form:select></td>
-							<td><form:errors path="disabilityid" cssClass="error" /></td>
+							
 						</tr>
+						
+							
+							
 						
 						<tr>
 							<td><input type="submit" value="Add Child" onClick="return Add();" /></td>

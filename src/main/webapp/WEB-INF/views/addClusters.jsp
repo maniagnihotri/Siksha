@@ -7,17 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>add Cluster</title>
 <style>
-.error {
-	color: #ff0000;
-}
 
-.errorblock {
-	color: #000;
-	background-color: #ffEEEE;
-	border: 3px solid #ff0000;
-	padding: 8px;
-	margin: 16px;
-}
 </style>
 
 <script language="Javascript">
@@ -39,7 +29,7 @@ function Update()
 }
 
 function confirmation() {
-	var answer = confirm("Deleting this District,deletes all the blocks,clusters under it! Are you sure? ");
+	var answer = confirm("Deleting this Cluster,deletes all the areas under it! Are you sure? ");
 	if (answer){
 		//alert("Bye bye!");
 		//window.location = "http://www.google.com/";
@@ -87,7 +77,7 @@ function dropDownBlockchange() {
 								<form:option value="${District.ID}" label="${District.district_name}" /> 	
 							</c:forEach>
 							</form:select></td>
-							<td><form:errors path="district_id" cssClass="error" /></td>
+							
 						</tr>
 						<tr>
 							<td><form:label path="block_id">Block</form:label></td>
@@ -97,17 +87,17 @@ function dropDownBlockchange() {
 								<form:option value="${Block.block_id}" label="${Block.block_name}" /> 	
 							</c:forEach>
 							</form:select></td>
-							<td><form:errors path="block_id" cssClass="error" /></td>
+							
 							
 						</tr>
 						<tr>
 							<td>Cluster Name :</td>
 							<td><form:input path="cluster_name" /></td>
-							<td><form:errors path="cluster_name" cssClass="error" /></td>
+							
 						</tr>
 						<tr>
-							<td><input type="submit" value="Add Block" onClick="return Add();" /></td>
-							<td><input type="submit" value="Update Block" onClick="return Update();"/></td>
+							<td><input type="submit" value="Add Cluster" onClick="return Add();" /></td>
+							<td><input type="submit" value="Update Cluster" onClick="return Update();"/></td>
 						</tr>
 					</table>
 
@@ -133,6 +123,6 @@ function dropDownBlockchange() {
 				<!--  /c:if-->
 				</div>
 				</div>
-				<%@include file="bottom.jsp"%>
+				<%@include file="adminBottom.jsp"%>
 </body>
 </html>

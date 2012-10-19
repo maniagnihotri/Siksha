@@ -180,3 +180,11 @@ hr { display:block; height:1px; margin:10px 0; padding:0; border:0 solid #CCC; b
 .noscreen { display:none; }
 
 .foto{  display: block;}
+
+
+.errorblock {
+	color: #fff;
+	border: 3px solid #ffffff;
+	padding: 8px;
+	margin: 10px;
+}

@@ -44,15 +44,8 @@ public class ChildDetailsdaoImpl extends CustomHibernateDaoSupport implements Ch
 		try {
 			//if (this.getBlock(B.getBlock_name(),D).isEmpty()) {
 				transaction = session.beginTransaction();
-				long tid;
-				tid = cd.getVillage().getVillageTypeNames().getClusters().getBlock().getDistrict().getID();
-				tid = tid * 100 + cd.getVillage().getVillageTypeNames().getClusters().getBlock().getBlock_id();
-				tid = tid * 100 + cd.getVillage().getVillageTypeNames().getClusters().getCluster_id();
-				tid = tid * 100 + cd.getVillage().getId();
-				tid = tid*100000 + this.getNumberOfRows() ; 
 				
-				cd.setId(tid);
-				session.save(cd);
+				session.saveOrUpdate(cd);
 				transaction.commit();
 			//}
 		} catch (HibernateException e) {
@@ -183,7 +176,7 @@ public class ChildDetailsdaoImpl extends CustomHibernateDaoSupport implements Ch
 		// TODO Auto-generated method stub
 		Session session = getSessionFactory().openSession();
 		Transaction transaction = null;
-		List<Disability> disabilityList = new ArrayList<Disability>();
+		//List<Disability> disabilityList = new ArrayList<Disability>();
 		//disabilityList = null;
 		try {
 			//if (this.getBlock(B.getBlock_name(),D).isEmpty()) {
@@ -202,6 +195,31 @@ public class ChildDetailsdaoImpl extends CustomHibernateDaoSupport implements Ch
 			session.close();
 		}
 		//return 0;
+	}
+
+	@Override
+	public ChildDetails getChildById(String childid) {
+		// TODO Auto-generated method stub
+		Session session = getSessionFactory().openSession();
+		Transaction transaction = null;
+		ChildDetails childdetails = new ChildDetails();
+		childdetails = null;
+		try {
+			//if (this.getBlock(B.getBlock_name(),D).isEmpty()) {
+				transaction = session.beginTransaction();
+				Criteria criteria = session.createCriteria(ChildDetails.class);
+				criteria.add(Restrictions.eq("id",childid));
+				childdetails = (ChildDetails)criteria.uniqueResult();
+				transaction.commit();
+				return childdetails;
+			//}
+		} catch (HibernateException e) {
+			transaction.rollback();
+			e.printStackTrace();
+			return childdetails;
+		} finally {
+			session.close();
+		}
 	}
 
 	/*@Override

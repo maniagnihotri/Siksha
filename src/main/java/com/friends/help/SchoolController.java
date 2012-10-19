@@ -79,7 +79,7 @@ public class SchoolController {
 			model.put("VillagetypenamesList", villagetypenamesdao.getVillageTypeNamesList(school.getCluster_id(),school.getType_id()));
 			//model.put("SchoolList", Schooldao.getSchoolList(school.getVillage_id()));
 			model.put("VillageList", villagedao.getVillageList(school.getVillagetypenames_id()));
-			model.put("SchoolList", schooldao.getSchoolList(school.getVillage_id()));
+			model.put("SchoolList", schooldao.getSchoolList(school.getVillage_id(),school.getCategory_id()));
 			school.setName(null);
 			model.addAttribute("School", school);
 	
@@ -175,7 +175,7 @@ public class SchoolController {
 		//model.put("Schooltypelist", Schooldao.getSchoolType());
 		model.put("VillagetypenamesList", villagetypenamesdao.getVillageTypeNamesList(school.getCluster_id(),school.getType_id()));
 		model.put("VillageList", villagedao.getVillageList(school.getVillagetypenames_id()));
-		model.put("SchoolList", schooldao.getSchoolList(school.getVillage_id()));
+		model.put("SchoolList", schooldao.getSchoolList(school.getVillage_id(),school.getCategory_id()));
 		return new ModelAndView("addSchool", "command", school);
 		}//return new ModelAndView(new RedirectView("Schooladder.html"));
 	}
@@ -197,7 +197,7 @@ public class SchoolController {
 		//model.put("Schooltypelist", Schooldao.getSchoolType());
 		model.put("VillagetypenamesList", villagetypenamesdao.getVillageTypeNamesList(school.getCluster_id(),school.getType_id()));
 		model.put("VillageList", villagedao.getVillageList(school.getVillagetypenames_id()));
-		model.put("SchoolList", schooldao.getSchoolList(school.getVillage_id()));
+		model.put("SchoolList", schooldao.getSchoolList(school.getVillage_id(),school.getCategory_id()));
 		//School.setCluster_name(null);
 		//model.addAttribute("School", School);
 
@@ -227,7 +227,7 @@ public class SchoolController {
 			model.put("VillagetypenamesList", villagetypenamesdao.getVillageTypeNamesList(school.getCluster_id(),school.getType_id()));
 			//model.put("SchoolList", Schooldao.getSchoolList(school.getVillage_id()));
 			model.put("VillageList", villagedao.getVillageList(school.getVillagetypenames_id()));
-			model.put("SchoolList", schooldao.getSchoolList(school.getVillage_id()));
+			model.put("SchoolList", schooldao.getSchoolList(school.getVillage_id(),school.getCategory_id()));
 			school.setName(null);
 			model.addAttribute("School", school);
 	
@@ -255,7 +255,7 @@ public class SchoolController {
 		//model.put("Schooltypelist", Schooldao.getSchoolType());
 		model.put("VillagetypenamesList", villagetypenamesdao.getVillageTypeNamesList(school.getCluster_id(),school.getType_id()));
 		model.put("VillageList", villagedao.getVillageList(school.getVillagetypenames_id()));
-		model.put("SchoolList", schooldao.getSchoolList(school.getVillage_id()));
+		model.put("SchoolList", schooldao.getSchoolList(school.getVillage_id(),school.getCategory_id()));
 		//School.setCluster_name(null);
 		//model.addAttribute("School", School);
 

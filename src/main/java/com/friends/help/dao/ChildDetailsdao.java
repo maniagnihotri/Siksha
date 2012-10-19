@@ -16,5 +16,6 @@ public interface ChildDetailsdao {
 	public Disability getDisability(int disabilityid);
 	public List<Disability> getDisabilityList(); 
 	public  int getNumberOfRows();
-
+	
+	public ChildDetails getChildById(String childid);
 }

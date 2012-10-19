@@ -7,17 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>add Cluster</title>
 <style>
-.error {
-	color: #ff0000;
-}
 
-.errorblock {
-	color: #000;
-	background-color: #ffEEEE;
-	border: 3px solid #ff0000;
-	padding: 8px;
-	margin: 16px;
-}
 </style>
 
 <script language="Javascript">
@@ -103,7 +93,7 @@ function dropDownTypechange() {
 								<form:option value="${District.ID}" label="${District.district_name}" /> 	
 							</c:forEach>
 							</form:select></td>
-							<td><form:errors path="district_id" cssClass="error" /></td>
+							
 						</tr>
 						<tr>
 							<td><form:label path="block_id">Block</form:label></td>
@@ -113,7 +103,7 @@ function dropDownTypechange() {
 								<form:option value="${Block.block_id}" label="${Block.block_name}" /> 	
 							</c:forEach>
 							</form:select></td>
-							<td><form:errors path="block_id" cssClass="error" /></td>
+							
 							
 						</tr>
 						<tr>
@@ -124,7 +114,7 @@ function dropDownTypechange() {
 								<form:option value="${Clusters.cluster_id}" label="${Clusters.cluster_name}" /> 	
 							</c:forEach>
 							</form:select></td>
-							<td><form:errors path="cluster_id" cssClass="error" /></td>
+							
 							
 						</tr>
 						<tr>
@@ -134,7 +124,7 @@ function dropDownTypechange() {
 								<form:option value="1" label="Select ---" />	
 								<form:option value="2" label="--- Select" />
 							</form:select></td>
-							<td><form:errors path="type_id" cssClass="error" /></td>
+							
 							
 						</tr>
 						<tr>
@@ -143,8 +133,8 @@ function dropDownTypechange() {
 							<td><form:errors path="name" cssClass="error" /></td>
 						</tr>
 						<tr>
-							<td><input type="submit" value="Add Block" onClick="return Add();" /></td>
-							<td><input type="submit" value="Update Block" onClick="return Update();"/></td>
+							<td><input type="submit" value="Add VillageType" onClick="return Add();" /></td>
+							<td><input type="submit" value="Update VillageType" onClick="return Update();"/></td>
 						</tr>
 					</table>
 
@@ -170,6 +160,6 @@ function dropDownTypechange() {
 				<!--  /c:if-->
 				</div>
 				</div>
-				<%@include file="bottom.jsp"%>
+				<%@include file="adminBottom.jsp"%>
 </body>
 </html>

@@ -26,6 +26,7 @@
 	<beans:bean class="com.friends.jsp.validate.SelectPlaceValidator" />
 	<beans:bean class="com.friends.jsp.validate.Childvalidator" />
 	<beans:bean class="com.friends.jsp.validate.UserValidator" />
+	<beans:bean class="com.friends.jsp.validate.EducationalDetailsValidator" />
 	
 	
 	<beans:bean id="messageSource"
@@ -66,6 +67,9 @@
 				<beans:value>com.friends.help.forms.CasteType</beans:value>
 				<beans:value>com.friends.help.forms.Disability</beans:value>
 				<beans:value>com.friends.help.forms.ChildDetails</beans:value>
+				<beans:value>com.friends.help.forms.ChildClass</beans:value>
+				<beans:value>com.friends.help.forms.Irregularity</beans:value>
+				<beans:value>com.friends.help.forms.EducationalDetails</beans:value>
 			</beans:list>
 				</beans:property>
 		<beans:property name="hibernateProperties">
@@ -106,6 +110,10 @@
 	</beans:bean>
 	
 	<beans:bean id="myChildDAO" class="com.friends.help.dao.ChildDetailsdaoImpl">
+		<beans:property name="sessionFactory" ref="mySessionFactory"/>
+	</beans:bean>
+	
+	<beans:bean id="myEduDAO" class="com.friends.help.dao.EducationDetailsDaoImpl">
 		<beans:property name="sessionFactory" ref="mySessionFactory"/>
 	</beans:bean>
 </beans:beans>

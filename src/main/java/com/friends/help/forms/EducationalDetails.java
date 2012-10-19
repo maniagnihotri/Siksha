@@ -15,8 +15,7 @@ import javax.persistence.Table;
 public class EducationalDetails {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int id;
+	private String id;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "Child_Id", nullable = false)
@@ -27,11 +26,11 @@ public class EducationalDetails {
 	private ChildClass class_id;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "Age_Child_Id", nullable = false)
+	@JoinColumn(name = "Age_Class_Id", nullable = false)
 	private ChildClass age_class_id;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "Child_Id", nullable = false)
+	@JoinColumn(name = "School_Id", nullable = false)
 	private School school_id;
 	
 	@Column(name="Regularity_Type")
@@ -48,17 +47,36 @@ public class EducationalDetails {
 	@JoinColumn(name = "Left_School_At", nullable = false)
 	private ChildClass left_school_at;
 	
+	@Column(name="Class_Id", nullable = false, insertable=false, updatable=false)
+	private int help_class_id;
+	@Column(name="Age_Class_Id", nullable = false, insertable=false, updatable=false)
+	private int help_age_class_id;
+	@Column(name="Left_School_At", nullable = false, insertable=false, updatable=false)
+	private int help_left_school_at;
+	@Column(name="Child_Id", nullable = false, insertable=false, updatable=false)
+	private String help_child_id;
+	@Column(name="School_Id", nullable = false, insertable=false, updatable=false)
+	private int help_school_id;
+	@Column(name="Irregularity", nullable = false, insertable=false, updatable=false)
+	private int help_irregularity_id;
 	
+	
+	public ChildClass getLeft_school_at() {
+		return left_school_at;
+	}
+	public void setLeft_school_at(ChildClass left_school_at) {
+		this.left_school_at = left_school_at;
+	}
 	public int getRoll_no() {
 		return roll_no;
 	}
 	public void setRoll_no(int roll_no) {
 		this.roll_no = roll_no;
 	}
-	public int getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public ChildDetails getChild_id() {
@@ -96,6 +114,42 @@ public class EducationalDetails {
 	}
 	public void setIrregularity(Irregularity irregularity) {
 		this.irregularity = irregularity;
+	}
+	public int getHelp_class_id() {
+		return help_class_id;
+	}
+	public void setHelp_class_id(int help_class_id) {
+		this.help_class_id = help_class_id;
+	}
+	public int getHelp_age_class_id() {
+		return help_age_class_id;
+	}
+	public void setHelp_age_class_id(int help_age_class_id) {
+		this.help_age_class_id = help_age_class_id;
+	}
+	public int getHelp_left_school_at() {
+		return help_left_school_at;
+	}
+	public void setHelp_left_school_at(int help_left_school_at) {
+		this.help_left_school_at = help_left_school_at;
+	}
+	public String getHelp_child_id() {
+		return help_child_id;
+	}
+	public void setHelp_child_id(String help_child_id) {
+		this.help_child_id = help_child_id;
+	}
+	public int getHelp_school_id() {
+		return help_school_id;
+	}
+	public void setHelp_school_id(int help_school_id) {
+		this.help_school_id = help_school_id;
+	}
+	public int getHelp_irregularity_id() {
+		return help_irregularity_id;
+	}
+	public void setHelp_irregularity_id(int help_irregularity_id) {
+		this.help_irregularity_id = help_irregularity_id;
 	}
 	
 }

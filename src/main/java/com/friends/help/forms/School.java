@@ -42,7 +42,7 @@ public class School {
 	private int villagetypenames_id;
 	@Column(name="T_OR_V_ID", nullable = false, insertable=false, updatable=false)
 	private int village_id;
-	@Column(name="T_OR_V_ID", nullable = false, insertable=false, updatable=false)
+	@Column(name="School_Category", nullable = false, insertable=false, updatable=false)
 	private int category_id;
 
 	public int getId() {

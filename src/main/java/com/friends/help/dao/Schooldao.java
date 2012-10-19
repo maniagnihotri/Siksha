@@ -11,9 +11,10 @@ public interface Schooldao {
 	public void updateSchool(School C);
 	public void deletSchool(School C);
 
-	public Set<School> getSchoolList(int villageid);
+	public Set<School> getSchoolList(int villageid,int type);
 	public School getSchoolObject(String name,int villageid);
 	public School getSchoolObjectbyID(int schoolid);
 	
 	public SchoolCategory getSchoolCategoryById(int categoryid);
+	//public Set<School> getSchoolList(int villageid);
 }

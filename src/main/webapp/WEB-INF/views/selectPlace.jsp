@@ -142,7 +142,7 @@ function dropDownTypechange() {
 						</tr>
 						
 						<tr>
-							<td><input type="submit" value="Add Block" onClick="return Add();" /></td>
+							<td><input type="submit" value=" Select Village/Town " onClick="return Add();" /></td>
 							
 						</tr>
 					</table>

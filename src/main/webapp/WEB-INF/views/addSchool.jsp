@@ -7,17 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>add Village</title>
 <style>
-.error {
-	color: #ff0000;
-}
 
-.errorblock {
-	color: #000;
-	background-color: #ffEEEE;
-	border: 3px solid #ff0000;
-	padding: 8px;
-	margin: 16px;
-}
 </style>
 
 <script language="Javascript">
@@ -110,7 +100,7 @@ function dropDownTypechange() {
 								<form:option value="${District.ID}" label="${District.district_name}" /> 	
 							</c:forEach>
 							</form:select></td>
-							<td><form:errors path="district_id" cssClass="error" /></td>
+							
 						</tr>
 						<tr>
 							<td><form:label path="block_id">Block</form:label></td>
@@ -120,7 +110,7 @@ function dropDownTypechange() {
 								<form:option value="${Block.block_id}" label="${Block.block_name}" /> 	
 							</c:forEach>
 							</form:select></td>
-							<td><form:errors path="block_id" cssClass="error" /></td>
+							
 							
 						</tr>
 						<tr>
@@ -131,7 +121,7 @@ function dropDownTypechange() {
 								<form:option value="${Clusters.cluster_id}" label="${Clusters.cluster_name}" /> 	
 							</c:forEach>
 							</form:select></td>
-							<td><form:errors path="cluster_id" cssClass="error" /></td>
+							
 							
 						</tr>
 						<tr>
@@ -141,7 +131,7 @@ function dropDownTypechange() {
 								<form:option value="1" label="Panchayat" />	
 								<form:option value="2" label="Town" />
 							</form:select></td>
-							<td><form:errors path="type_id" cssClass="error" /></td>
+							
 							
 						</tr>
 						<tr>
@@ -152,7 +142,7 @@ function dropDownTypechange() {
 								<form:option value="${villagetypenames.id}" label="${villagetypenames.name}" /> 	
 							</c:forEach>
 							</form:select></td>
-							<td><form:errors path="villagetypenames_id" cssClass="error" /></td>
+							
 							
 						</tr>
 						<tr>
@@ -163,7 +153,7 @@ function dropDownTypechange() {
 								<form:option value="${village.id}" label="${village.name}" /> 	
 							</c:forEach>
 							</form:select></td>
-							<td><form:errors path="villagetypenames_id" cssClass="error" /></td>
+							
 							
 						</tr>
 						<tr>
@@ -176,17 +166,17 @@ function dropDownTypechange() {
 								<form:option value="4" label="High School" />
 								<form:option value="5" label="Higher Secondary" />
 							</form:select></td>
-							<td><form:errors path="category_id" cssClass="error" /></td>
+							
 							
 						</tr>
 						<tr>
 							<td>Name :</td>
 							<td><form:input path="name" /></td>
-							<td><form:errors path="name" cssClass="error" /></td>
+							
 						</tr>
 						<tr>
-							<td><input type="submit" value="Add Block" onClick="return Add();" /></td>
-							<td><input type="submit" value="Update Block" onClick="return Update();"/></td>
+							<td><input type="submit" value="Add School" onClick="return Add();" /></td>
+							<td><input type="submit" value="Update School" onClick="return Update();"/></td>
 						</tr>
 					</table>
 
@@ -212,6 +202,6 @@ function dropDownTypechange() {
 				<!--  /c:if-->
 				</div>
 				</div>
-				<%@include file="bottom.jsp"%>
+				<%@include file="adminBottom.jsp"%>
 </body>
 </html>

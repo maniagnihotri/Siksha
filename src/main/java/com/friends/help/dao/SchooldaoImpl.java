@@ -77,7 +77,7 @@ public class SchooldaoImpl extends CustomHibernateDaoSupport implements Schoolda
 	}
 
 	@Override
-	public Set<School> getSchoolList(int villageid) {
+	public Set<School> getSchoolList(int villageid,int type) {
 		// TODO Auto-generated method stub
 		Session session = getSessionFactory().openSession();
 		Transaction transaction = null;
@@ -89,7 +89,8 @@ public class SchooldaoImpl extends CustomHibernateDaoSupport implements Schoolda
 				//session.save(B);
 				Criteria criteria = session.createCriteria(School.class);
 				criteria.add(Restrictions.eq("village_id",villageid));
-				//criteria.add(Restrictions.eq("type_id", villagetypeid));
+				if(type!=0)
+					criteria.add(Restrictions.eq("category_id", type));
 				school =new HashSet<School>(criteria.list());
 				transaction.commit();
 			 return school;
